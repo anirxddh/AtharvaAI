@@ -1,0 +1,11 @@
+{
+  "name": "atharva-ai",
+  "version": "1.0.0",
+  "description": "Atharva Veda vs Indian Constitution comparison platform",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}
