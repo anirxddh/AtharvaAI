@@ -8,7 +8,7 @@
 ## Landing Page
 
 <div align="center">
-  <img src="./Landing-Page.png" width="500px" alt="AtharvaAI landing page" />
+  <img src="./Landing-Page.png" width="900px" alt="AtharvaAI landing page" />
 </div>
 
 <br>
@@ -269,6 +269,8 @@ in between too, but then again, the breaks were nominal. From being a 0 credit p
 Starting with the dilemmas, oooof, what do I even say about the project; It was a massive headache to actually get a perfect output. A lot of finetuning went into the ``matcher.py`` specially the part where synonyms were present, there was this one instance where I was getting a similarity index of 14% for a comparision where it should be 100% logically :/. Another instance showed me 110% similarity and that's why there is a Similarity Cap present.
 
 This was my first venture into API endpoint system and json finetuning using python along with full stack system using python and javascript and oh well I'd say for the past 10 hours, I learnt a lot of new stuff and I really enjoyed it. Looking forward to more silly projects like these!
+
+Do checkout the Project Paper I wrote using Overleaf and Prism Editor! Definitely worth a read.
 
 <br>
 
