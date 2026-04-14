@@ -1,6 +1,5 @@
 /* =============================================================================
-   AtharvaAI — Design System: The Academic Editorial
-   style.css
+   AtharvaAI — CSS STYLE SHEET
    ============================================================================= */
 
 /* ── 1. CSS CUSTOM PROPERTIES ─────────────────────────────────────────────── */
@@ -141,7 +140,6 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  /* Glassmorphism: surface at 80% opacity + backdrop blur */
   background: rgba(251, 249, 245, 0.80);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -168,7 +166,7 @@ ul { list-style: none; }
   text-align: center;
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-2xl);
-  max-width: 720px;  /* override container for narrower hero text */
+  max-width: 750px;  /* override container for narrower hero text */
 }
 
 .hero__title {
@@ -210,7 +208,6 @@ ul { list-style: none; }
 .field-textarea {
   width: 100%;
   background: var(--color-surface-container-highest);
-  /* No border — tonal differentiation only */
   border: none;
   border-radius: var(--radius-md);
   padding: 1.75rem 2rem;
@@ -284,7 +281,7 @@ ul { list-style: none; }
 
 /* ── 10. RESULTS PANEL ────────────────────────────────────────────────────── */
 .results-panel {
-  display: none;  /* hidden until JS populates results */
+  display: none;
   animation: fadeSlideIn 0.5s ease forwards;
 }
 

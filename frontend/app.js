@@ -1,9 +1,7 @@
 /**
  * AtharvaAI — app.js
  * ─────────────────────────────────────────────────────────────
- * Frontend-only JS: no API calls, no fake responses.
- * Provides UI hooks, DOM helpers, and the handleAnalyze()
- * entry point that future backend/AI integration will call.
+ * Frontend
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -42,24 +40,45 @@ const RING_CIRCUMFERENCE = 2 * Math.PI * 68;
  * into a loading/ready state for the AI response that will be
  * injected later via populateResults().
  */
-function handleAnalyze() {
+  async function handleAnalyze() {
   const principle = vedicInput.value.trim();
 
-  // ── Basic validation ─────────────────────────────────────────
   if (!principle) {
     shakeField(vedicInput);
     vedicInput.focus();
-    console.warn('[AtharvaAI] Analyze triggered with empty input.');
     return;
   }
 
-  // ── Log the value (as required) ──────────────────────────────
-  console.log('[AtharvaAI] Analyzing principle:', principle);
+  console.log('[AtharvaAI] Analyzing:', principle);
 
-  // ── UI: loading state ─────────────────────────────────────────
   setButtonLoading(true);
   clearResults();
   hideResultsPanel();
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/compare", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ text: principle })
+    });
+
+    const backendData = await res.json();
+    console.log("BACKEND RESPONSE:", backendData);
+
+    // 👇 Transform backend → frontend format
+    const formattedData = transformBackendData(backendData);
+
+    populateResults(formattedData);
+
+  } catch (err) {
+    console.error("API ERROR:", err);
+    alert("Something broke 😭 check console");
+  }
+
+  setButtonLoading(false);
+}
 
   // ────────────────────────────────────────────────────────────────
   // TODO: Replace the setTimeout below with your actual API call.
@@ -85,11 +104,38 @@ function handleAnalyze() {
   //     ]
   //   }
   // ────────────────────────────────────────────────────────────────
-  setTimeout(() => {
-    setButtonLoading(false);
-    // Results panel stays hidden — waiting for populateResults() call.
-    console.log('[AtharvaAI] Ready to receive AI result. Call populateResults(data) to render.');
-  }, 600);
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACKEND DATA TRANSFORM
+   Maps backend response shape to frontend rendering shape.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+function transformBackendData(data) {
+  const ai = data.ai_analysis;
+
+  return {
+    score: Math.round(data.similarity_score * 100),
+
+    constitutionArticle: `${data.article.article} - ${data.article.text}`,
+
+    title: ai.title,
+    explanation: ai.explanation,
+    tags: ai.tags,
+
+    vedicFoundation: ai.explanation,
+    modernEquivalent: data.article.text,
+
+    analyticalSynthesis: ai.analytical_synthesis,
+    detailedSynthesis: ai.detailed_synthesis,
+
+    applications: [
+      {
+        heading: 'Applications',
+        items: ai.applications
+      }
+    ]
+  };
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

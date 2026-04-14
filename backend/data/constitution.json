@@ -2,146 +2,175 @@
   {
     "article": "Article 14",
     "title": "Equality before law",
-    "text": "The state shall not deny equality before the law or equal protection of the laws."
+    "text": "The state shall not deny equality before the law or equal protection of the laws.",
+    "keywords": "equality fairness justice equal rights non discrimination equal treatment law"
   },
   {
     "article": "Article 21",
     "title": "Right to life",
-    "text": "No person shall be deprived of life or personal liberty except according to procedure established by law."
+    "text": "No person shall be deprived of life or personal liberty except according to procedure established by law.",
+    "keywords": "life liberty dignity human rights survival protection freedom existence"
   },
   {
     "article": "Article 48A",
     "title": "Environmental protection",
-    "text": "The state shall protect and improve the environment and safeguard forests and wildlife."
+    "text": "The state shall protect and improve the environment and safeguard forests and wildlife.",
+    "keywords": "environment nature forests wildlife ecology protection sustainability earth"
   },
   {
     "article": "Article 51A",
     "title": "Fundamental duties",
-    "text": "It shall be the duty of every citizen to protect the environment and promote harmony."
+    "text": "It shall be the duty of every citizen to protect the environment and promote harmony.",
+    "keywords": "duty responsibility harmony environment civic responsibility society citizens"
   },
   {
     "article": "Article 15",
     "title": "Prohibition of discrimination",
-    "text": "The State shall not discriminate against any citizen on grounds only of religion, race, caste, sex, place of birth or any of them."
+    "text": "The State shall not discriminate against any citizen on grounds only of religion, race, caste, sex, place of birth or any of them.",
+    "keywords": "discrimination equality caste religion gender bias fairness rights"
   },
   {
     "article": "Article 17",
     "title": "Abolition of Untouchability",
-    "text": "Untouchability is abolished and its practice in any form is forbidden."
+    "text": "Untouchability is abolished and its practice in any form is forbidden.",
+    "keywords": "untouchability caste equality dignity social justice discrimination"
   },
   {
     "article": "Article 19",
-    "title": "Protection of certain rights regarding freedom of speech",
-    "text": "All citizens shall have the right to freedom of speech and expression, to assemble peaceably, to form associations, and to move freely throughout the territory of India."
+    "title": "Freedom of speech",
+    "text": "All citizens shall have the right to freedom of speech and expression, to assemble peaceably, to form associations, and to move freely.",
+    "keywords": "freedom speech expression liberty movement rights democracy"
   },
   {
     "article": "Article 21A",
     "title": "Right to education",
-    "text": "The State shall provide free and compulsory education to all children of the age of six to fourteen years in such manner as the State may, by law, determine."
+    "text": "The State shall provide free and compulsory education to all children.",
+    "keywords": "education learning knowledge children school literacy development"
   },
   {
     "article": "Article 25",
-    "title": "Freedom of conscience and religion",
-    "text": "Subject to public order, morality and health, all persons are equally entitled to freedom of conscience and the right freely to profess, practise and propagate religion."
+    "title": "Freedom of religion",
+    "text": "All persons are equally entitled to freedom of conscience and the right to profess, practise and propagate religion.",
+    "keywords": "religion faith belief freedom conscience spirituality rights"
   },
   {
     "article": "Article 38",
-    "title": "State to secure a social order for the promotion of welfare of the people",
-    "text": "The State shall strive to promote the welfare of the people by securing and protecting as effectively as it may a social order in which justice, social, economic and political, shall inform all the institutions of the national life."
+    "title": "Welfare of the people",
+    "text": "The State shall promote welfare by securing justice—social, economic and political.",
+    "keywords": "welfare justice equality society development social economic fairness"
   },
   {
     "article": "Article 39",
-    "title": "Certain principles of policy to be followed by the State",
-    "text": "The State shall direct its policy towards securing that the ownership and control of the material resources of the community are so distributed as best to subserve the common good."
+    "title": "Distribution of resources",
+    "text": "The State shall ensure that material resources are distributed to serve the common good.",
+    "keywords": "resources distribution wealth fairness economy justice society"
   },
   {
     "article": "Article 39A",
-    "title": "Equal justice and free legal aid",
-    "text": "The State shall secure that the operation of the legal system promotes justice, on a basis of equal opportunity, and shall provide free legal aid to ensure that opportunities for securing justice are not denied to any citizen."
+    "title": "Equal justice and legal aid",
+    "text": "The State shall promote justice and provide free legal aid.",
+    "keywords": "justice legal aid fairness equality law access rights"
   },
   {
     "article": "Article 40",
-    "title": "Organisation of village panchayats",
-    "text": "The State shall take steps to organise village panchayats and endow them with such powers and authority as may be necessary to enable them to function as units of self-government."
+    "title": "Village panchayats",
+    "text": "The State shall organise village panchayats as units of self-government.",
+    "keywords": "local governance villages democracy decentralization community"
   },
   {
     "article": "Article 43",
-    "title": "Living wage, etc., for workers",
-    "text": "The State shall endeavour to secure, by suitable legislation or economic organisation, to all workers a living wage, conditions of work ensuring a decent standard of life and full enjoyment of leisure."
+    "title": "Living wage",
+    "text": "The State shall ensure workers get a living wage and decent standard of life.",
+    "keywords": "workers wages labour dignity livelihood employment rights"
   },
   {
     "article": "Article 46",
-    "title": "Promotion of educational and economic interests of weaker sections",
-    "text": "The State shall promote with special care the educational and economic interests of the weaker sections of the people, and shall protect them from social injustice and all forms of exploitation."
+    "title": "Weaker sections",
+    "text": "The State shall promote educational and economic interests of weaker sections.",
+    "keywords": "weaker sections equality upliftment social justice protection support"
   },
   {
     "article": "Article 47",
-    "title": "Duty of the State to raise the level of nutrition and standard of living",
-    "text": "The State shall regard the raising of the level of nutrition and the standard of living of its people and the improvement of public health as among its primary duties."
+    "title": "Public health",
+    "text": "The State shall raise the level of nutrition and improve public health.",
+    "keywords": "health nutrition wellbeing public health society welfare"
   },
   {
     "article": "Article 49",
-    "title": "Protection of monuments and places and objects of national importance",
-    "text": "It shall be the obligation of the State to protect every monument or place or object of artistic or historic interest, declared to be of national importance, from spoliation, disfigurement, destruction, removal, disposal or export."
+    "title": "Protection of monuments",
+    "text": "The State shall protect monuments and places of national importance.",
+    "keywords": "heritage culture monuments history preservation protection"
   },
   {
     "article": "Article 50",
-    "title": "Separation of judiciary from executive",
-    "text": "The State shall take steps to separate the judiciary from the executive in the public services of the State."
+    "title": "Separation of judiciary",
+    "text": "The State shall separate judiciary from executive.",
+    "keywords": "judiciary independence law governance justice system"
   },
   {
     "article": "Article 51",
-    "title": "Promotion of international peace and security",
-    "text": "The State shall endeavour to promote international peace and security, maintain just and honourable relations between nations, and foster respect for international law."
+    "title": "International peace",
+    "text": "The State shall promote international peace and security.",
+    "keywords": "peace international relations harmony diplomacy global justice"
   },
   {
     "article": "Article 23",
-    "title": "Prohibition of traffic in human beings and forced labour",
-    "text": "Traffic in human beings and begar and other similar forms of forced labour are prohibited and any contravention of this provision shall be an offence punishable in accordance with law."
+    "title": "Forced labour prohibition",
+    "text": "Traffic in human beings and forced labour are prohibited.",
+    "keywords": "labour exploitation human rights slavery dignity freedom"
   },
   {
     "article": "Article 24",
-    "title": "Prohibition of employment of children in factories, etc.",
-    "text": "No child below the age of fourteen years shall be employed to work in any factory or mine or engaged in any other hazardous employment."
+    "title": "Child labour prohibition",
+    "text": "No child shall be employed in hazardous work.",
+    "keywords": "children labour protection safety rights child welfare"
   },
   {
     "article": "Article 29",
-    "title": "Protection of interests of minorities",
-    "text": "Any section of the citizens residing in the territory of India or any part thereof having a distinct language, script or culture of its own shall have the right to conserve the same."
+    "title": "Cultural rights",
+    "text": "Citizens have the right to conserve their culture and language.",
+    "keywords": "culture language identity rights heritage diversity"
   },
   {
     "article": "Article 32",
-    "title": "Remedies for enforcement of rights",
-    "text": "The right to move the Supreme Court by appropriate proceedings for the enforcement of the fundamental rights is guaranteed, ensuring the protection of justice."
+    "title": "Right to constitutional remedies",
+    "text": "Right to move Supreme Court for enforcement of rights.",
+    "keywords": "justice remedies rights enforcement constitution courts"
   },
   {
     "article": "Article 41",
-    "title": "Right to work, to education and to public assistance in certain cases",
-    "text": "The State shall, within the limits of its economic capacity and development, make effective provision for securing the right to work, to education and to public assistance in cases of unemployment, old age, sickness and disablement."
+    "title": "Right to work",
+    "text": "State shall provide right to work, education and assistance.",
+    "keywords": "work employment support welfare assistance rights"
   },
   {
     "article": "Article 42",
-    "title": "Provision for just and humane conditions of work and maternity relief",
-    "text": "The State shall make provision for securing just and humane conditions of work and for maternity relief."
+    "title": "Humane work conditions",
+    "text": "State shall ensure humane working conditions and maternity relief.",
+    "keywords": "labour dignity work conditions maternity rights welfare"
   },
   {
     "article": "Article 44",
-    "title": "Uniform civil code for the citizens",
-    "text": "The State shall endeavour to secure for the citizens a uniform civil code throughout the territory of India."
+    "title": "Uniform civil code",
+    "text": "State shall secure a uniform civil code.",
+    "keywords": "law uniformity equality civil code governance"
   },
   {
     "article": "Article 45",
-    "title": "Provision for early childhood care and education",
-    "text": "The State shall endeavour to provide early childhood care and education for all children until they complete the age of six years."
+    "title": "Early childhood care",
+    "text": "State shall provide early childhood education.",
+    "keywords": "children education care development learning"
   },
   {
     "article": "Article 48",
-    "title": "Organisation of agriculture and animal husbandry",
-    "text": "The State shall endeavour to organise agriculture and animal husbandry on modern and scientific lines and shall, in particular, take steps for preserving and improving the breeds, and prohibiting the slaughter, of cows and calves and other milch and draught cattle."
+    "title": "Agriculture and animal husbandry",
+    "text": "State shall organise agriculture and protect cattle.",
+    "keywords": "agriculture animals environment sustainability farming"
   },
   {
     "article": "Article 300A",
-    "title": "Persons not to be deprived of property save by authority of law",
-    "text": "No person shall be deprived of his property save by authority of law."
+    "title": "Right to property",
+    "text": "No person shall be deprived of property except by law.",
+    "keywords": "property ownership rights law assets security"
   }
 ]

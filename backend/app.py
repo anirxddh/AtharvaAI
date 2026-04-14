@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 from matcher import find_best_match
 from ai_helper import get_ai_analysis
+from flask_cors import CORS
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def home():
