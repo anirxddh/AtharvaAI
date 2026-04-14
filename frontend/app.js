@@ -7,13 +7,11 @@
 
 'use strict';
 
-/* ── DOM REFERENCES ──────────────────────────────────────────────────────── */
 const analyzeBtn       = document.getElementById('analyzeBtn');
 const vedicInput       = document.getElementById('vedicInput');
 const lawOutput        = document.getElementById('lawOutput');
 const resultsPanel     = document.getElementById('resultsPanel');
 
-// Result placeholders
 const similarityScore  = document.getElementById('similarityScore');
 const scoreArc         = document.getElementById('scoreArc');
 const resultTitle      = document.getElementById('resultTitle');
@@ -25,21 +23,8 @@ const analyticalSynthesis = document.getElementById('analyticalSynthesis');
 const detailedSynthesis   = document.getElementById('detailedSynthesis');
 const applicationsList    = document.getElementById('applicationsList');
 
-/* ── CONSTANTS ────────────────────────────────────────────────────────────── */
-// Full circumference of the SVG circle (r=68): 2π × 68 ≈ 427
 const RING_CIRCUMFERENCE = 2 * Math.PI * 68;
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PUBLIC ENTRY POINT
-   Called by the "Start Comparison" button (onclick="handleAnalyze()").
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/**
- * handleAnalyze()
- * Reads the Vedic input, validates it, logs it, then sets the UI
- * into a loading/ready state for the AI response that will be
- * injected later via populateResults().
- */
   async function handleAnalyze() {
   const principle = vedicInput.value.trim();
 
@@ -67,49 +52,42 @@ const RING_CIRCUMFERENCE = 2 * Math.PI * 68;
     const backendData = await res.json();
     console.log("BACKEND RESPONSE:", backendData);
 
-    // 👇 Transform backend → frontend format
     const formattedData = transformBackendData(backendData);
 
     populateResults(formattedData);
 
   } catch (err) {
     console.error("API ERROR:", err);
-    alert("Something broke 😭 check console");
+    alert("Sorry, an error occurred while fetching the analysis. check the console for details.");
   }
 
   setButtonLoading(false);
 }
 
-  // ────────────────────────────────────────────────────────────────
-  // TODO: Replace the setTimeout below with your actual API call.
-  //
-  // Expected usage once backend is ready:
-  //   const result = await fetchAnalysis(principle);
-  //   populateResults(result);
-  //
-  // The populateResults() function accepts an object shaped like:
-  //   {
-  //     score: 84,                     // number 0–100
-  //     constitutionArticle: "...",    // text for #lawOutput
-  //     title: "Harmonious Convergence",
-  //     explanation: "...",
-  //     tags: ["Justice", "Equality"],
-  //     vedicFoundation: "...",
-  //     modernEquivalent: "...",
-  //     analyticalSynthesis: "...",    // may contain <p> tags
-  //     detailedSynthesis: "...",      // may contain <p> and <i> tags
-  //     applications: [
-  //       { heading: "Judicial Interpretation", items: ["...", "..."] },
-  //       { heading: "Policy Framework",        items: ["...", "..."] }
-  //     ]
-  //   }
-  // ────────────────────────────────────────────────────────────────
+function scrollToInput() {
+  const section = document.getElementById('inputSection');
+  if (!section) return;
 
+  const rect           = section.getBoundingClientRect();
+  const sectionHeight  = rect.height;
+  const viewportHeight = window.innerHeight;
+  const sectionTop     = rect.top + window.scrollY;
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BACKEND DATA TRANSFORM
-   Maps backend response shape to frontend rendering shape.
-   ═══════════════════════════════════════════════════════════════════════════ */
+  // Adjust this value to tune the vertical centering target.
+  const OFFSET = 80;
+
+  const targetScrollY = sectionTop - (viewportHeight / 2) + (sectionHeight / 2) - OFFSET;
+
+  window.scrollTo({
+    top:      Math.max(0, targetScrollY),
+    behavior: 'smooth'
+  });
+}
+
+function sanitizeText(text) {
+  if (!text) return '';
+  return text.replace(/\*\*/g, '');
+}
 
 function transformBackendData(data) {
   const ai = data.ai_analysis;
@@ -138,90 +116,62 @@ function transformBackendData(data) {
   };
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESULT POPULATION
-   Call this with the data object once the AI returns a response.
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/**
- * populateResults(data)
- * Accepts a structured result object and fills every placeholder element.
- * @param {Object} data - Structured AI response (see shape above)
- */
 function populateResults(data) {
   if (!data || typeof data !== 'object') {
     console.error('[AtharvaAI] populateResults called with invalid data:', data);
     return;
   }
 
-  // 1. Constitution article (readonly textarea)
   if (data.constitutionArticle) {
     lawOutput.value = data.constitutionArticle;
   }
 
-  // 2. Similarity score ring + number
   if (typeof data.score === 'number') {
     renderScoreRing(data.score);
     similarityScore.textContent = `${data.score}%`;
   }
 
-  // 3. Title
   if (data.title) {
     resultTitle.textContent = data.title;
   }
 
-  // 4. Explanation
   if (data.explanation) {
-    explanation.textContent = data.explanation;
+    const element = explanation;
+    element.textContent = sanitizeText(data.explanation);
   }
 
-  // 5. Tags / chips
   if (Array.isArray(data.tags) && data.tags.length) {
     renderTags(data.tags);
   }
 
-  // 6. Comparison cards
   if (data.vedicFoundation)  vedicFoundation.textContent  = data.vedicFoundation;
   if (data.modernEquivalent) modernEquivalent.textContent = data.modernEquivalent;
 
-  // 7. Analytical synthesis (supports HTML for editorial drop-cap)
   if (data.analyticalSynthesis) {
     analyticalSynthesis.innerHTML = wrapParagraphs(data.analyticalSynthesis);
   }
 
-  // 8. Detailed synthesis (two-column; supports italic tags)
   if (data.detailedSynthesis) {
     detailedSynthesis.innerHTML = wrapParagraphs(data.detailedSynthesis);
   }
 
-  // 9. Practical applications
   if (Array.isArray(data.applications) && data.applications.length) {
     renderApplications(data.applications);
   }
 
-  // Reveal the results panel with animation
   showResultsPanel();
 
-  // Smooth scroll to results
   resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   console.log('[AtharvaAI] Results rendered successfully.');
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RENDER HELPERS
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/**
- * renderScoreRing(score)
- * Animates the SVG arc to represent score (0–100).
- */
 function renderScoreRing(score) {
   const clampedScore  = Math.max(0, Math.min(100, score));
   const filledLength  = (clampedScore / 100) * RING_CIRCUMFERENCE;
   const offset        = RING_CIRCUMFERENCE - filledLength;
 
-  // Force a reflow so the CSS transition fires from the initial offset
+  // Force reflow so the transition starts from an empty ring.
   scoreArc.style.transition = 'none';
   scoreArc.style.strokeDashoffset = RING_CIRCUMFERENCE;
 
@@ -233,11 +183,6 @@ function renderScoreRing(score) {
   });
 }
 
-/**
- * renderTags(tags)
- * Creates chip elements and appends them to #tagsContainer.
- * @param {string[]} tags
- */
 function renderTags(tags) {
   tagsContainer.innerHTML = '';
   tags.forEach(tag => {
@@ -248,11 +193,6 @@ function renderTags(tags) {
   });
 }
 
-/**
- * renderApplications(applications)
- * Builds application cards inside #applicationsList.
- * @param {Array<{heading: string, items: string[]}>} applications
- */
 function renderApplications(applications) {
   applicationsList.innerHTML = '';
   applications.forEach(group => {
@@ -271,8 +211,7 @@ function renderApplications(applications) {
       const li = document.createElement('li');
       li.className = 'app-card__item';
 
-      // ICON FILE: 'check_circle' Material Symbol.
-      // Replace with <img src="/assets/icons/check.svg"> if using custom icons.
+      // Replace this Material Symbol with your own icon asset if needed.
       const icon = document.createElement('span');
       icon.className = 'app-card__item-icon material-symbols-outlined';
       icon.textContent = 'check_circle';
@@ -290,10 +229,6 @@ function renderApplications(applications) {
   });
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   UI STATE HELPERS
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 function setButtonLoading(isLoading) {
   if (isLoading) {
     analyzeBtn.classList.add('btn--loading');
@@ -303,7 +238,6 @@ function setButtonLoading(isLoading) {
   } else {
     analyzeBtn.classList.remove('btn--loading');
     analyzeBtn.disabled = false;
-    // Restore original button contents (icon + label)
     analyzeBtn.innerHTML = '<span class="material-symbols-outlined">auto_awesome</span> Start Comparison';
   }
 }
@@ -316,10 +250,6 @@ function hideResultsPanel() {
   resultsPanel.classList.remove('is-visible');
 }
 
-/**
- * clearResults()
- * Empties every placeholder element so stale data never shows.
- */
 function clearResults() {
   similarityScore.textContent    = '—';
   resultTitle.textContent        = '';
@@ -331,28 +261,14 @@ function clearResults() {
   detailedSynthesis.innerHTML    = '';
   applicationsList.innerHTML     = '';
   lawOutput.value                = '';
-  // Reset arc to empty
   if (scoreArc) {
     scoreArc.style.transition       = 'none';
     scoreArc.style.strokeDashoffset = RING_CIRCUMFERENCE;
   }
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   UTILITY HELPERS
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/**
- * wrapParagraphs(text)
- * Splits a plain-text or lightly-HTML string into <p> tags
- * so the editorial drop-cap and column styling work properly.
- * Already-wrapped paragraphs are returned as-is.
- */
 function wrapParagraphs(text) {
   if (!text) return '';
-  // If it already contains block tags, trust it.
   if (/<(p|div|h[1-6])\b/.test(text)) return text;
-  // Split on double newlines and wrap each chunk.
   return text
     .split(/\n{2,}/)
     .map(chunk => chunk.trim())
@@ -361,10 +277,6 @@ function wrapParagraphs(text) {
     .join('\n');
 }
 
-/**
- * shakeField(el)
- * Brief horizontal shake animation to signal a validation error.
- */
 function shakeField(el) {
   el.style.transition = 'transform 0.05s ease';
   const keyframes = [0, -6, 6, -4, 4, -2, 2, 0];
@@ -380,23 +292,10 @@ function shakeField(el) {
   };
   step();
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   SUGGESTION FILTER
-   Filters suggestion cards by tag keyword.
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/**
- * filterSuggestions(tag)
- * Shows only suggestion cards whose data-tags attribute includes the tag.
- * Passing null / 'all' shows every card.
- * @param {string|null} tag
- */
 function filterSuggestions(tag) {
   const cards   = document.querySelectorAll('.suggestion-card');
   const buttons = document.querySelectorAll('.chip--filter');
 
-  // Update active filter chip
   buttons.forEach(btn => {
     btn.classList.toggle('is-active', btn.textContent.toLowerCase() === (tag || '').toLowerCase());
   });
@@ -408,12 +307,7 @@ function filterSuggestions(tag) {
   });
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 (function init() {
-  // Ensure SVG ring starts at 0 fill
   if (scoreArc) {
     scoreArc.style.strokeDasharray  = RING_CIRCUMFERENCE;
     scoreArc.style.strokeDashoffset = RING_CIRCUMFERENCE;

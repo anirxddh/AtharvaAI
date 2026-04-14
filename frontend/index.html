@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AtharvaAI | Scholarly Analysis</title>
+  <title>AtharvaAI | Compare Vedic Principles with Modern Law</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,7 @@
   <nav class="nav">
     <div class="nav__inner container">
       <span class="nav__logo">AtharvaAI</span>
-      <button class="btn btn--primary btn--sm">Get Started!</button>
+      <button class="btn btn--primary btn--sm" onclick="scrollToInput()">Get Started</button>
     </div>
   </nav>
 
@@ -38,8 +38,7 @@
     </header>
 
     <!-- ===== INPUT SECTION ===== -->
-    <section class="input-section container">
-
+    <section id="inputSection" class="input-section container">
       <!-- Vedic Input -->
       <div class="field-group">
         <label class="field-label" for="vedicInput">Enter the Vedic Principle or Verses:</label>
@@ -176,14 +175,11 @@
       <div class="suggestion-cards">
 
         <article class="suggestion-card" data-tags="justice equality">
-          <!-- ICON FILE: Replace <img src=""> with a local image of old leather-bound legal books.
-               Suggested path: /assets/images/suggestion-dharma.jpg
-               Alt: Close-up of aged leather-bound legal books with warm library lighting -->
           <div class="suggestion-card__image-wrap">
             <img
               class="suggestion-card__image"
-              src=""
-              alt="Aged leather-bound legal books in warm library light"
+              src="assets/dharma-wheel.svg"
+              alt="Dharma Wheel symbolizing the cosmic order"
               onerror="this.parentElement.classList.add('suggestion-card__image-wrap--fallback')"
             />
           </div>
@@ -196,14 +192,11 @@
         </article>
 
         <article class="suggestion-card" data-tags="justice">
-          <!-- ICON FILE: Replace <img src=""> with a local image of an antique brass scale of justice.
-               Suggested path: /assets/images/suggestion-nyaya.jpg
-               Alt: Antique brass scales of justice on a wooden surface -->
           <div class="suggestion-card__image-wrap">
             <img
               class="suggestion-card__image"
-              src=""
-              alt="Antique brass scales of justice on wooden surface"
+              src="assets/justice.svg"
+              alt="Scales of justice representing Nyaya logic and fair judgment"
               onerror="this.parentElement.classList.add('suggestion-card__image-wrap--fallback')"
             />
           </div>
@@ -215,14 +208,11 @@
         </article>
 
         <article class="suggestion-card" data-tags="ethics">
-          <!-- ICON FILE: Replace <img src=""> with a local image of green leaves with water droplets.
-               Suggested path: /assets/images/suggestion-env.jpg
-               Alt: Fresh green leaves with water droplets in a serene garden -->
           <div class="suggestion-card__image-wrap">
             <img
               class="suggestion-card__image"
-              src=""
-              alt="Fresh green leaves with water droplets"
+              src="assets/environmental-stewardship.svg"
+              alt="Environmental stewardship and ecological harmony"
               onerror="this.parentElement.classList.add('suggestion-card__image-wrap--fallback')"
             />
           </div>
