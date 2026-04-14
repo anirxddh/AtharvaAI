@@ -5,6 +5,10 @@ import json
 
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return "Backend is alive... We ball!"
+
 @app.route("/compare", methods=["POST"])
 def compare():
     data = request.get_json()
@@ -19,15 +23,23 @@ def compare():
     # Step 2: AI
     ai_raw = get_ai_analysis(user_text, article["text"])
 
+    # Step 3: Clean + Parse
     try:
-        ai_data = json.loads(ai_raw)
-    except:
+        cleaned = ai_raw.strip()
+
+        if cleaned.startswith("```"):
+            cleaned = cleaned.replace("```json", "").replace("```", "").strip()
+
+        ai_data = json.loads(cleaned)
+
+    except Exception as e:
         ai_data = {
             "error": "AI parsing failed",
-            "raw": ai_raw
+            "raw": ai_raw,
+            "details": str(e)
         }
 
-    # Step 3: Return response
+    # Step 4: Return
     return jsonify({
         "article": article,
         "similarity_score": round(score, 2),

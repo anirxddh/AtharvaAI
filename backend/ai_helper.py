@@ -8,7 +8,7 @@ import os
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 
 def get_ai_analysis(vedic_text, article_text):
@@ -23,16 +23,21 @@ Vedic Principle:
 Indian Constitutional Article:
 {article_text}
 
-Return STRICTLY in JSON format with the following fields:
+STRICT RULES:
+- Return ONLY valid JSON
+- Do NOT include markdown
+- Do NOT include ```json
+- Do NOT include explanations outside JSON
 
-- title
-- tags (array)
-- explanation
-- analytical_synthesis
-- detailed_synthesis
-- applications (array)
-
-Do not add extra text. Do not explain outside JSON.
+FORMAT:
+{{
+  "title": "...",
+  "tags": ["...", "..."],
+  "explanation": "...",
+  "analytical_synthesis": "...",
+  "detailed_synthesis": "...",
+  "applications": ["...", "..."]
+}}
 """
 
     response = model.generate_content(prompt)

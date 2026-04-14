@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AtharvaAI | Scholarly Analysis</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Material Symbols (icons) -->
+  <!-- ICON FILE: Uses Google Material Symbols CDN. Replace with a local icon font if going offline. -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <div class="nav__inner container">
+      <span class="nav__logo">AtharvaAI</span>
+      <button class="btn btn--primary btn--sm">Get Started</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero container">
+      <h1 class="hero__title">Welcome to AtharvaAI</h1>
+      <p class="hero__subtitle">
+        Compare the old Atharva Ved principles with the modern Constitution of India,
+        then get a similarity score, explanation and modern application.
+      </p>
+    </header>
+
+    <!-- ===== INPUT SECTION ===== -->
+    <section class="input-section container">
+
+      <!-- Vedic Input -->
+      <div class="field-group">
+        <label class="field-label" for="vedicInput">Enter the Vedic Principle or Verses</label>
+        <textarea
+          id="vedicInput"
+          class="field-textarea"
+          placeholder="Enter a Vedic principle, verse, or concept…"
+          rows="7"
+        ></textarea>
+      </div>
+
+      <!-- Arrow divider -->
+      <!-- ICON FILE: Using Material Symbol 'south' arrow. Replace with a custom SVG arrow if needed. -->
+      <div class="input-divider" aria-hidden="true">
+        <span class="material-symbols-outlined input-divider__icon">south</span>
+      </div>
+
+      <!-- Constitution Output -->
+      <div class="field-group">
+        <label class="field-label" for="lawOutput">Equivalent Modern Constitution Law</label>
+        <textarea
+          id="lawOutput"
+          class="field-textarea field-textarea--readonly"
+          placeholder="The matched constitutional article will appear here after analysis…"
+          rows="7"
+          readonly
+        ></textarea>
+      </div>
+
+      <!-- CTA -->
+      <div class="input-cta">
+        <!-- ICON FILE: 'auto_awesome' Material Symbol star-burst icon. Replace with custom SVG if needed. -->
+        <button id="analyzeBtn" class="btn btn--primary btn--lg" onclick="handleAnalyze()">
+          <span class="material-symbols-outlined">auto_awesome</span>
+          Start Comparison
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ===== SEPARATOR ===== -->
+    <div class="section-rule" role="separator"></div>
+
+    <!-- ===== RESULT SECTION ===== -->
+    <!-- This entire block starts hidden; JS will reveal it after analysis -->
+    <div id="resultsPanel" class="results-panel" aria-live="polite">
+
+      <!-- 1. Similarity Score -->
+      <section class="score-section container">
+        <div class="score-ring-wrap">
+          <svg class="score-ring" viewBox="0 0 160 160" aria-hidden="true">
+            <circle class="score-ring__track" cx="80" cy="80" r="68" />
+            <circle
+              id="scoreArc"
+              class="score-ring__fill"
+              cx="80" cy="80" r="68"
+              stroke-dasharray="427"
+              stroke-dashoffset="427"
+            />
+          </svg>
+          <div class="score-ring__label">
+            <span id="similarityScore" class="score-ring__number">—</span>
+          </div>
+        </div>
+
+        <div class="score-meta">
+          <p class="score-meta__eyebrow">Similarity Index</p>
+          <h2 id="resultTitle" class="score-meta__title"></h2>
+          <p id="explanation" class="score-meta__explanation"></p>
+          <div id="tagsContainer" class="tags"></div>
+        </div>
+      </section>
+
+      <!-- 2. Direct Comparison Cards -->
+      <section class="comparison-grid container--narrow">
+
+        <div class="comparison-card">
+          <!-- ICON FILE: 'history_edu' Material Symbol scroll/book icon. Replace with custom SVG for Vedic aesthetic. -->
+          <div class="comparison-card__icon-wrap" aria-hidden="true">
+            <span class="material-symbols-outlined comparison-card__icon">history_edu</span>
+          </div>
+          <h3 class="comparison-card__heading">Vedic Foundation</h3>
+          <p id="vedicFoundation" class="comparison-card__body"></p>
+        </div>
+
+        <div class="comparison-card">
+          <!-- ICON FILE: 'gavel' Material Symbol gavel icon. Replace with custom SVG for constitutional law aesthetic. -->
+          <div class="comparison-card__icon-wrap" aria-hidden="true">
+            <span class="material-symbols-outlined comparison-card__icon">gavel</span>
+          </div>
+          <h3 class="comparison-card__heading">Modern Equivalent</h3>
+          <p id="modernEquivalent" class="comparison-card__body"></p>
+        </div>
+
+      </section>
+
+      <!-- 3. Analytical Synthesis -->
+      <section class="synthesis-section container--narrow">
+        <h2 class="synthesis-section__title">Analytical Synthesis</h2>
+        <div id="analyticalSynthesis" class="synthesis-section__body editorial-drop-cap"></div>
+      </section>
+
+      <!-- 4. Detailed Synthesis -->
+      <section class="detailed-section">
+        <div class="container--narrow">
+          <h2 class="detailed-section__title">Detailed Synthesis</h2>
+          <p class="detailed-section__subtitle">The Evolution of Dharma into Constitutional Mandate</p>
+          <div id="detailedSynthesis" class="detailed-section__body"></div>
+        </div>
+      </section>
+
+      <!-- 5. Practical Applications -->
+      <section class="applications-section container">
+        <h2 class="applications-section__title">Practical Application</h2>
+        <div id="applicationsList" class="applications-grid"></div>
+      </section>
+
+    </div><!-- /resultsPanel -->
+
+    <!-- ===== SEARCH SUGGESTIONS ===== -->
+    <section class="suggestions-section container">
+      <div class="suggestions-section__header">
+        <div>
+          <h2 class="suggestions-section__title">Search Suggestions</h2>
+          <p class="suggestions-section__subtitle">Explore pre-configured analysis structures for classic legal dilemmas.</p>
+        </div>
+        <div class="suggestions-section__filters">
+          <button class="chip chip--filter" onclick="filterSuggestions('justice')">Justice</button>
+          <button class="chip chip--filter" onclick="filterSuggestions('equality')">Equality</button>
+          <button class="chip chip--filter" onclick="filterSuggestions('ethics')">Ethics</button>
+        </div>
+      </div>
+
+      <div class="suggestion-cards">
+
+        <article class="suggestion-card" data-tags="justice equality">
+          <!-- ICON FILE: Replace <img src=""> with a local image of old leather-bound legal books.
+               Suggested path: /assets/images/suggestion-dharma.jpg
+               Alt: Close-up of aged leather-bound legal books with warm library lighting -->
+          <div class="suggestion-card__image-wrap">
+            <img
+              class="suggestion-card__image"
+              src=""
+              alt="Aged leather-bound legal books in warm library light"
+              onerror="this.parentElement.classList.add('suggestion-card__image-wrap--fallback')"
+            />
+          </div>
+          <div class="suggestion-card__body">
+            <h4 class="suggestion-card__title">Dharma vs. Rule of Law</h4>
+            <p class="suggestion-card__desc">A foundational synthesis of duty and rights.</p>
+            <!-- ICON FILE: 'arrow_forward' Material Symbol. -->
+            <span class="suggestion-card__arrow material-symbols-outlined">arrow_forward</span>
+          </div>
+        </article>
+
+        <article class="suggestion-card" data-tags="justice">
+          <!-- ICON FILE: Replace <img src=""> with a local image of an antique brass scale of justice.
+               Suggested path: /assets/images/suggestion-nyaya.jpg
+               Alt: Antique brass scales of justice on a wooden surface -->
+          <div class="suggestion-card__image-wrap">
+            <img
+              class="suggestion-card__image"
+              src=""
+              alt="Antique brass scales of justice on wooden surface"
+              onerror="this.parentElement.classList.add('suggestion-card__image-wrap--fallback')"
+            />
+          </div>
+          <div class="suggestion-card__body">
+            <h4 class="suggestion-card__title">Nyaya Logic</h4>
+            <p class="suggestion-card__desc">Applying ancient logical proofs to modern evidence.</p>
+            <span class="suggestion-card__arrow material-symbols-outlined">arrow_forward</span>
+          </div>
+        </article>
+
+        <article class="suggestion-card" data-tags="ethics">
+          <!-- ICON FILE: Replace <img src=""> with a local image of green leaves with water droplets.
+               Suggested path: /assets/images/suggestion-env.jpg
+               Alt: Fresh green leaves with water droplets in a serene garden -->
+          <div class="suggestion-card__image-wrap">
+            <img
+              class="suggestion-card__image"
+              src=""
+              alt="Fresh green leaves with water droplets"
+              onerror="this.parentElement.classList.add('suggestion-card__image-wrap--fallback')"
+            />
+          </div>
+          <div class="suggestion-card__body">
+            <h4 class="suggestion-card__title">Environmental Stewardship</h4>
+            <p class="suggestion-card__desc">Ecological mandates through the lens of Prakriti.</p>
+            <span class="suggestion-card__arrow material-symbols-outlined">arrow_forward</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div>
+        <span class="footer__logo">AtharvaAI</span>
+        <p class="footer__copy">© 2024 AtharvaAI. A Digital Curator of Legal and Vedic Wisdom.</p>
+      </div>
+      <a class="footer__github" href="#" aria-label="View on GitHub">
+        <!-- ICON FILE: GitHub SVG icon. Place as /assets/icons/github.svg and use <img> or inline SVG. -->
+        <svg class="footer__github-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 6.803c.93.004 1.867.126 2.742.37 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.562 21.8 24 17.302 24 12 24 5.373 18.627 0 12 0z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
