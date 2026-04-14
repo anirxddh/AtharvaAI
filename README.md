@@ -242,6 +242,88 @@ python app.py
 
 <br>
 
+## Environment Setup (Gemini API Key)
+
+This project uses the **Google Gemini API** for AI-based analysis.
+To run the backend locally, you must provide your own API key.
+
+---
+
+### Step 1: Get your API Key
+
+1. Go to **Google AI Studio**
+2. Generate a Gemini API key
+3. Copy the key
+
+---
+
+### Step 2: Create a `.env` file
+
+Inside the **backend folder**, create a file named:
+
+```
+.env
+```
+
+---
+
+### Step 3: Add your API Key
+
+Paste the following inside `.env`:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+Example:
+
+```
+GEMINI_API_KEY=XXXXXXXXXXX
+```
+
+---
+
+### Step 4: Ensure `.env` is ignored
+
+Make sure your `.env` file is listed in `.gitignore`:
+
+```
+.env
+```
+
+---
+
+### Step 5: Run the backend
+
+Now start the Flask server:
+
+```bash
+python app.py
+```
+
+---
+
+### Important Notes
+
+* Never share your API key publicly
+* Free-tier keys have rate limits
+* If the API limit is reached, the system automatically switches to fallback mode
+
+---
+
+### How it works internally
+
+* The API key is loaded using `python-dotenv`
+* Backend reads it via:
+
+```python
+os.getenv("GEMINI_API_KEY")
+```
+
+* Used inside `ai_helper.py` for generating AI responses
+
+<br>
+
 ## Live Demo
 
 <https://atharva-ai-tau.vercel.app/>
@@ -272,7 +354,10 @@ This was my first venture into API endpoint system and json finetuning using pyt
 
 Do checkout the Project Paper I wrote using Overleaf and Prism Editor! Definitely worth a read.
 
-<br>
+<div align="center">
+  <img src="./hours-clocked.png" width="300px" alt="Number of Hours Coded!" />
+  <p>Here's to 10 hours of coding! XD</p>
+</div>
 
 ## Show Your Support!
 
