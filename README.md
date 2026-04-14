@@ -110,6 +110,15 @@ AtharvaAI/
 
 <br>
 
+## Pre - Defined Search Suggestions
+
+<div align="center">
+	<img src="./Examples/pre-defined search suggestions.png" alt="pre-defined suggestions" />
+</div>
+
+Three pre - defined template suggestions which auto prompt to the search bar to give you defined results.
+
+
 ## Results
 
 Here are the two cases of example to show the project has worked so far:
