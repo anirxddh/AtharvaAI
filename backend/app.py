@@ -82,11 +82,12 @@ def compare():
 
     # Step 6: Cap Score to 100%
     score = min(score, 1.0)
-
+    adjusted_score = min(1.0, score * 1.4 + 0.1)
+    
     # Step 7: Return Response
     return jsonify({
         "article": article,
-        "similarity_score": round(score, 2),
+        "similarity_score": round(adjusted_score, 2),
         "confidence": confidence,
         "ai_analysis": ai_data
     })

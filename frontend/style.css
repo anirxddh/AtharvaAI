@@ -247,8 +247,8 @@ ul { list-style: none; }
 
 .input-divider__icon {
   font-size: 1.4rem;
-  color: var(--color-outline-variant);
-  opacity: 0.45;
+  color: var(--color-primary);
+  opacity: 0.7;
 }
 
 /* CTA button row */
@@ -672,7 +672,7 @@ ul { list-style: none; }
 
 .suggestion-card:hover {
   box-shadow: var(--shadow-ambient);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 
 .suggestion-card.is-hidden {

@@ -13,7 +13,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 def get_ai_analysis(vedic_text, article_text):
     prompt = f"""
-You are an academic research assistant.
+You are an expert in Indian philosophy and constitutional law.
 
 Compare the following:
 
@@ -25,9 +25,8 @@ Indian Constitutional Article:
 
 STRICT RULES:
 - Return ONLY valid JSON
-- Do NOT include markdown
-- Do NOT include ```json
-- Do NOT include explanations outside JSON
+- No markdown
+- No extra text
 
 FORMAT:
 {{
@@ -38,6 +37,12 @@ FORMAT:
   "detailed_synthesis": "...",
   "applications": ["...", "..."]
 }}
+
+GUIDELINES:
+- Explanation MUST clearly connect BOTH texts
+- Avoid vague philosophical statements
+- Use precise legal + ethical reasoning
+- Applications must be real-world and modern
 """
 
     # 🔁 Retry mechanism

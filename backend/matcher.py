@@ -19,7 +19,10 @@ def preprocess(text):
         "bias": "discrimination",
         "justice": "fairness",
         "rights": "law",
-        "people": "citizens"
+        "people": "citizens",
+        "fair": "equality",
+        "equal": "equality",
+        "rights": "fundamental rights law",
     }
 
     for k, v in synonyms.items():
@@ -56,7 +59,7 @@ def find_best_match(user_input):
         # Equality / fairness → Article 14
         if any(word in user_input for word in ["equal", "equality", "fair", "fairness", "justice"]):
             if article["article"] == "Article 14":
-                boost += 0.5
+                boost += 0.3
 
         # Discrimination → Article 14 & 15
         if any(word in user_input for word in ["discrimination", "bias"]):

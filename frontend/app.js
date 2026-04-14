@@ -292,6 +292,30 @@ function shakeField(el) {
   };
   step();
 }
+// ===== PREDEFINED SUGGESTIONS =====
+const suggestions = {
+  dharma: "The principle of Dharma emphasizes justice, duty, fairness, and moral responsibility in maintaining social order and equality.",
+  nyaya: "Nyaya philosophy focuses on logic, reasoning, fairness, and evidence-based justice, ensuring truth and impartial judgment in society.",
+  environment: "Humans must protect nature, preserve ecological balance, and act responsibly towards the environment for sustainable living."
+};
+
+// ===== HANDLE SUGGESTION CLICK =====
+function useSuggestion(key) {
+  const inputBox = document.getElementById('vedicInput');
+
+  if (!suggestions[key]) return;
+
+  inputBox.value = suggestions[key];
+
+  console.log('[AtharvaAI] Suggestion selected:', key);
+
+  scrollToInput();
+
+  setTimeout(() => {
+    handleAnalyze();
+  }, 300);
+}
+
 function filterSuggestions(tag) {
   const cards   = document.querySelectorAll('.suggestion-card');
   const buttons = document.querySelectorAll('.chip--filter');
