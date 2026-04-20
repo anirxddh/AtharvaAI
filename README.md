@@ -66,7 +66,7 @@ AtharvaAI/
 │       └── constitution.json
 ├── docs/
 │   └── atharva-ai_system_architecture.svg
-|   └── project-paper.pdf
+|   └── project-paper.docx
 |
 ├── Examples/
 │   ├── Low_Score/
@@ -361,7 +361,7 @@ Starting with the dilemmas, oooof, what do I even say about the project; It was 
 
 This was my first venture into API endpoint system and json finetuning using python along with full stack system using python and javascript and oh well I'd say for the past 10 hours, I learnt a lot of new stuff and I really enjoyed it. Looking forward to more silly projects like these!
 
-Do checkout the Project Paper I wrote using Overleaf and Prism Editor! Definitely worth a read.
+Do checkout the Project Paper I wrote! Definitely worth a read.
 
 <div align="center">
   <img src="./hours-clocked.png" width="300px" alt="Number of Hours Coded!" />
