@@ -374,18 +374,6 @@ If you like this project, please give it a ⭐ on GitHub!
 
 <br>
 
-## Thank You
-
-Feel free to support me on the respective platforms, most of them are still a work in progress for uploading and building Portfolio :D.
-
-- **GitHub**: [@anirxddh](https://github.com/anirxddh)
-- **LinkedIn**: [Aniruddha Dey](https://www.linkedin.com/in/aniruddha-dey/)
-- **X**: [Aniruddha Dey](https://x.com/anirxddh)
-- **Behance**: [Aniruddha Dey](https://www.behance.net/anirxddh)
-- **Dribble**: [Aniruddha Dey](https://dribbble.com/anirxddh)
-
-<br>
-
 <div align="center">
 
 ### Made with ☕ by Aniruddha Dey.
